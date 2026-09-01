@@ -260,6 +260,22 @@ Always use a suitable WHERE condition when deleting specific records.
 
 A FOREIGN KEY creates a relationship between two tables.
 
+### Visual Relationship
+
+```mermaid
+erDiagram
+    DEPT ||--o{ TEACHER : "has many"
+    DEPT {
+        int id PK
+        varchar name
+    }
+    TEACHER {
+        int id PK
+        varchar name
+        int dept_id FK
+    }
+```
+
 Example:
 
 ```sql
@@ -289,6 +305,16 @@ When a referenced record is deleted, related records can automatically be delete
 FOREIGN KEY (dept_id)
 REFERENCES dept(id)
 ON DELETE CASCADE
+```
+
+### How Cascading Flows
+
+```mermaid
+flowchart TD
+    A["dept row is UPDATED or DELETED"] --> B{"ON UPDATE CASCADE?"}
+    B -- Yes --> C["Matching dept_id values in teacher are updated automatically"]
+    A --> D{"ON DELETE CASCADE?"}
+    D -- Yes --> E["Matching rows in teacher are deleted automatically"]
 ```
 
 These concepts help maintain relationships between related tables.
