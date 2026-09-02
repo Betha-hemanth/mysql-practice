@@ -1,8 +1,8 @@
 # 🐬 MySQL Practice
 
-A collection of MySQL and SQL practice programs created while learning database concepts and writing SQL queries.
+A collection of **MySQL practice programs and SQL queries** created while learning and practicing database concepts.
 
-This repository contains practice with SELECT, WHERE, aggregate functions, GROUP BY, ORDER BY, LIMIT, UPDATE, DELETE, foreign keys, and cascading operations.
+This repository contains SQL examples covering `SELECT`, `WHERE`, `GROUP BY`, aggregate functions, `ORDER BY`, `LIMIT`, and basic table operations using employee and student data.
 
 ---
 
@@ -15,8 +15,6 @@ This repository contains practice with SELECT, WHERE, aggregate functions, GROUP
 - [Aggregate Functions](#-aggregate-functions)
 - [GROUP BY Clause](#-group-by-clause)
 - [ORDER BY and LIMIT](#-order-by-and-limit)
-- [UPDATE and DELETE](#-update-and-delete)
-- [Foreign Keys and Cascading](#-foreign-keys-and-cascading)
 - [Employee Table](#-employee-table)
 - [Student Table](#-student-table)
 - [Basic SQL Examples](#-basic-sql-examples)
@@ -30,11 +28,11 @@ This repository contains practice with SELECT, WHERE, aggregate functions, GROUP
 
 ## 🧠 About This Repository
 
-This repository is part of my journey to learn SQL, MySQL, and Database Management.
+This repository is part of my journey to learn **SQL and MySQL**.
 
-The practice files contain different SQL queries that help me understand how to create, retrieve, filter, update, delete, group, and sort data stored in relational database tables.
+The practice files contain different SQL queries that help me understand how to retrieve, filter, group, sort, and analyze data stored in relational database tables.
 
-The repository currently contains practice with:
+The repository currently contains practice files for:
 
 - SELECT queries
 - WHERE clause
@@ -42,10 +40,6 @@ The repository currently contains practice with:
 - GROUP BY
 - ORDER BY
 - LIMIT
-- UPDATE
-- DELETE
-- Foreign Keys
-- Cascading updates and deletes
 - Employee data
 - Student data
 
@@ -55,111 +49,109 @@ The repository currently contains practice with:
 
 | Topic | Purpose |
 |---|---|
-| SELECT | Retrieve data from a table |
-| WHERE | Filter records |
-| COUNT() | Count records |
-| SUM() | Calculate totals |
-| AVG() | Calculate averages |
-| MIN() | Find minimum values |
-| MAX() | Find maximum values |
-| GROUP BY | Group records |
-| ORDER BY | Sort query results |
-| LIMIT | Restrict returned rows |
-| UPDATE | Modify existing records |
-| DELETE | Remove records |
-| FOREIGN KEY | Create relationships between tables |
-| ON UPDATE CASCADE | Automatically update related foreign key values |
-| ON DELETE CASCADE | Automatically delete related records |
+| `SELECT` | Retrieve data from a table |
+| `WHERE` | Filter records |
+| Aggregate Functions | Perform calculations on data |
+| `GROUP BY` | Group records based on a column |
+| `ORDER BY` | Sort query results |
+| `LIMIT` | Restrict the number of returned rows |
+| Tables | Store structured data |
+| Conditions | Filter specific records |
 
 ---
 
 ## 📂 Repository Files
 
-The repository currently contains these SQL files:
+The repository contains the following SQL practice files:
 
-| File | Description |
+| 📄 File | 📝 Description |
 |---|---|
-| `Aggregate functions.sql` | Practice with SQL aggregate functions |
-| `Group By Clause.sql` | Practice with the GROUP BY clause |
-| `Limit abd Order By clause.sql` | Practice with LIMIT and ORDER BY |
-| `Update_delete and Cascading_FK.sql` | Practice with UPDATE, DELETE, foreign keys, and cascading |
-| `employee.sql` | Employee table and SQL practice |
+| `Aggregate functions.sql` | Practice queries using aggregate functions |
+| `Group By Clause.sql` | Practice queries using the GROUP BY clause |
+| `Limit abd Order By clause.sql` | Practice using LIMIT and ORDER BY |
+| `employee.sql` | Employee table and related SQL practice |
 | `select query and where clause.sql` | SELECT queries and WHERE conditions |
-| `student.sql` | Student table and SQL practice |
+| `student.sql` | Student table and related SQL practice |
 
 ---
 
 ## 🔎 SELECT Query and WHERE Clause
 
-The SELECT statement is used to retrieve information from a table.
+The `SELECT` statement is used to retrieve data from a database table.
 
-### Select All Columns
+### Basic Example
 
 ```sql
 SELECT *
-FROM student;
+FROM students;
 ```
 
-### Select Specific Columns
+This retrieves all columns and records from the `students` table.
+
+### Selecting Specific Columns
 
 ```sql
 SELECT student_name, city
-FROM student;
+FROM students;
 ```
 
 ### Using WHERE
 
-The WHERE clause filters records based on a condition.
+The `WHERE` clause is used to filter records.
 
 ```sql
 SELECT *
-FROM student
+FROM students
 WHERE city = 'Chennai';
 ```
+
+This returns only the students whose city is Chennai.
 
 ---
 
 ## 📊 Aggregate Functions
 
-Aggregate functions perform calculations on multiple rows.
+Aggregate functions perform calculations on multiple rows and return a single result.
 
 Common aggregate functions include:
 
-- COUNT()
-- SUM()
-- AVG()
-- MIN()
-- MAX()
+| Function | Purpose |
+|---|---|
+| `COUNT()` | Counts rows or values |
+| `SUM()` | Calculates the total |
+| `AVG()` | Calculates the average |
+| `MIN()` | Finds the minimum value |
+| `MAX()` | Finds the maximum value |
 
-### COUNT
+### Example
 
 ```sql
 SELECT COUNT(*)
 FROM employee;
 ```
 
-### SUM
+### SUM Example
 
 ```sql
 SELECT SUM(salary)
 FROM employee;
 ```
 
-### AVG
+### AVG Example
 
 ```sql
 SELECT AVG(salary)
 FROM employee;
 ```
 
-### MIN
+### MIN Example
 
 ```sql
 SELECT MIN(salary)
 FROM employee;
 ```
 
-### MAX
+### MAX Example
 
 ```sql
 SELECT MAX(salary)
@@ -170,17 +162,19 @@ FROM employee;
 
 ## 🗂️ GROUP BY Clause
 
-GROUP BY groups rows that have the same value in a particular column.
+The `GROUP BY` clause groups rows that have the same values in specified columns.
 
 ### Example
 
 ```sql
 SELECT city, COUNT(*)
-FROM student
+FROM customers
 GROUP BY city;
 ```
 
-### GROUP BY with Aggregate Function
+This groups customers according to their city.
+
+### GROUP BY with an Aggregate Function
 
 ```sql
 SELECT department, COUNT(*)
@@ -188,11 +182,15 @@ FROM employee
 GROUP BY department;
 ```
 
+This returns the number of employees in each department.
+
 ---
 
 ## 🔽 ORDER BY and LIMIT
 
-ORDER BY is used to sort results.
+### ORDER BY
+
+`ORDER BY` is used to sort query results.
 
 ### Ascending Order
 
@@ -212,11 +210,15 @@ ORDER BY salary DESC;
 
 ### LIMIT
 
+`LIMIT` restricts the number of rows returned.
+
 ```sql
 SELECT *
 FROM employee
 LIMIT 5;
 ```
+
+This returns only the first five records.
 
 ### ORDER BY with LIMIT
 
@@ -227,97 +229,7 @@ ORDER BY salary DESC
 LIMIT 3;
 ```
 
----
-
-## ✏️ UPDATE and DELETE
-
-### UPDATE
-
-UPDATE is used to modify existing records.
-
-```sql
-UPDATE employee
-SET salary = 50000
-WHERE id = 101;
-```
-
-The WHERE condition identifies which record should be changed.
-
-### DELETE
-
-DELETE is used to remove records.
-
-```sql
-DELETE FROM employee
-WHERE id = 101;
-```
-
-Always use a suitable WHERE condition when deleting specific records.
-
----
-
-## 🔗 Foreign Keys and Cascading
-
-A FOREIGN KEY creates a relationship between two tables.
-
-### Visual Relationship
-
-```mermaid
-erDiagram
-    DEPT ||--o{ TEACHER : "has many"
-    DEPT {
-        int id PK
-        varchar name
-    }
-    TEACHER {
-        int id PK
-        varchar name
-        int dept_id FK
-    }
-```
-
-Example:
-
-```sql
-CREATE TABLE teacher(
-    id INT PRIMARY KEY,
-    name VARCHAR(50),
-    dept_id INT,
-    FOREIGN KEY (dept_id) REFERENCES dept(id)
-);
-```
-
-### ON UPDATE CASCADE
-
-When the referenced primary key is changed, related foreign key values can automatically be updated.
-
-```sql
-FOREIGN KEY (dept_id)
-REFERENCES dept(id)
-ON UPDATE CASCADE
-```
-
-### ON DELETE CASCADE
-
-When a referenced record is deleted, related records can automatically be deleted.
-
-```sql
-FOREIGN KEY (dept_id)
-REFERENCES dept(id)
-ON DELETE CASCADE
-```
-
-### How Cascading Flows
-
-```mermaid
-flowchart TD
-    A["dept row is UPDATED or DELETED"] --> B{"ON UPDATE CASCADE?"}
-    B -- Yes --> C["Matching dept_id values in teacher are updated automatically"]
-    A --> D{"ON DELETE CASCADE?"}
-    D -- Yes --> E["Matching rows in teacher are deleted automatically"]
-```
-
-These concepts help maintain relationships between related tables.
+This can be used to find the top three highest salaries.
 
 ---
 
@@ -325,19 +237,17 @@ These concepts help maintain relationships between related tables.
 
 The `employee.sql` file is used for practicing SQL queries with employee-related data.
 
-Practice can include:
+Typical SQL practice can include:
 
-- Selecting employee records
+- Selecting employees
 - Filtering employees
 - Sorting employees
 - Counting employees
-- Calculating salary values
+- Finding salary values
 - Grouping employees
-- Finding minimum and maximum salaries
-- Updating employee information
-- Deleting employee records
+- Finding maximum and minimum salaries
 
-Example:
+### Example
 
 ```sql
 SELECT *
@@ -350,16 +260,16 @@ FROM employee;
 
 The `student.sql` file is used for practicing SQL queries with student-related data.
 
-Practice can include:
+Queries can be used to:
 
-- Selecting student records
-- Filtering students
-- Sorting students
-- Counting students
-- Grouping students
-- Analyzing student information
+- Retrieve student records
+- Filter students
+- Sort students
+- Count students
+- Group students
+- Analyze student information
 
-Example:
+### Example
 
 ```sql
 SELECT *
@@ -423,21 +333,6 @@ FROM employee
 LIMIT 5;
 ```
 
-### Update a Record
-
-```sql
-UPDATE employee
-SET salary = 50000
-WHERE id = 101;
-```
-
-### Delete a Record
-
-```sql
-DELETE FROM employee
-WHERE id = 101;
-```
-
 ---
 
 ## 🔄 SQL Learning Flow
@@ -459,18 +354,12 @@ ORDER BY
       ↓
 LIMIT
       ↓
-UPDATE & DELETE
-      ↓
-Foreign Keys
-      ↓
-Cascading
-      ↓
-Advanced SQL
+More Advanced SQL Queries
 ```
 
 ---
 
-## 🎯 Learning Goals
+## 🎯 What I Am Practicing
 
 This repository helps me practice:
 
@@ -484,11 +373,7 @@ This repository helps me practice:
 - Grouping records
 - Sorting query results
 - Limiting query results
-- Updating records
-- Deleting records
-- Creating table relationships
-- Understanding foreign keys
-- Understanding cascading operations
+- Working with relational database tables
 - Improving SQL problem-solving skills
 
 ---
@@ -520,12 +405,6 @@ ORDER BY
     ↓
 LIMIT
     ↓
-UPDATE & DELETE
-    ↓
-Foreign Keys
-    ↓
-Cascading
-    ↓
 Advanced SQL
 ```
 
@@ -537,9 +416,9 @@ More SQL and database concepts will be added as I continue learning.
 
 Planned topics include:
 
-- HAVING
-- DISTINCT
-- JOIN
+- `HAVING`
+- `DISTINCT`
+- `JOIN`
 - INNER JOIN
 - LEFT JOIN
 - RIGHT JOIN
@@ -547,9 +426,9 @@ Planned topics include:
 - Subqueries
 - Nested Queries
 - CASE Statements
+- Constraints
 - Primary Keys
 - Foreign Keys
-- Constraints
 - Database Design
 - Normalization
 - Views
@@ -563,7 +442,7 @@ Planned topics include:
 
 **Betha Hemanth**
 
-This repository is part of my journey to learn SQL, MySQL, and Database Management.
+This repository is part of my journey to learn **SQL, MySQL, and Database Management**.
 
 ---
 
