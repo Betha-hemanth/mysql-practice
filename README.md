@@ -15,6 +15,7 @@ This repository contains SQL examples covering `SELECT`, `WHERE`, `GROUP BY`, ag
 - [Aggregate Functions](#-aggregate-functions)
 - [GROUP BY Clause](#-group-by-clause)
 - [ORDER BY and LIMIT](#-order-by-and-limit)
+- [SQL Query Execution Order](#-sql-query-execution-order)
 - [Employee Table](#-employee-table)
 - [Student Table](#-student-table)
 - [Basic SQL Examples](#-basic-sql-examples)
@@ -164,6 +165,29 @@ FROM employee;
 
 The `GROUP BY` clause groups rows that have the same values in specified columns.
 
+### Visual Grouping
+
+```mermaid
+flowchart LR
+    subgraph Before["Ungrouped Rows"]
+    direction TB
+    A1["Chennai"]
+    A2["Chennai"]
+    A3["Mumbai"]
+    A4["Delhi"]
+    A5["Mumbai"]
+    end
+
+    subgraph After["Grouped by city"]
+    direction TB
+    B1["Chennai → 2"]
+    B2["Mumbai → 2"]
+    B3["Delhi → 1"]
+    end
+
+    Before -- GROUP BY city --> After
+```
+
 ### Example
 
 ```sql
@@ -233,6 +257,24 @@ This can be used to find the top three highest salaries.
 
 ---
 
+## 🔄 SQL Query Execution Order
+
+SQL reads top to bottom, but the database actually **runs** the clauses in a different order behind the scenes:
+
+```mermaid
+flowchart TD
+    A["FROM<br/>choose the table"] --> B["WHERE<br/>filter rows"]
+    B --> C["GROUP BY<br/>group rows"]
+    C --> D["Aggregate Functions<br/>COUNT, SUM, AVG..."]
+    D --> E["ORDER BY<br/>sort results"]
+    E --> F["LIMIT<br/>restrict row count"]
+    F --> G["Final Result"]
+```
+
+Understanding this order helps explain why, for example, `WHERE` can't filter on an aggregate result but a `HAVING` clause (a future topic) can.
+
+---
+
 ## 👨‍💼 Employee Table
 
 The `employee.sql` file is used for practicing SQL queries with employee-related data.
@@ -281,169 +323,3 @@ FROM student;
 ## 💻 Basic SQL Examples
 
 ### Select All Records
-
-```sql
-SELECT *
-FROM employee;
-```
-
-### Select Specific Columns
-
-```sql
-SELECT employee_name, salary
-FROM employee;
-```
-
-### Filter Records
-
-```sql
-SELECT *
-FROM employee
-WHERE salary > 30000;
-```
-
-### Sort Records
-
-```sql
-SELECT *
-FROM employee
-ORDER BY salary DESC;
-```
-
-### Count Records
-
-```sql
-SELECT COUNT(*)
-FROM employee;
-```
-
-### Group Records
-
-```sql
-SELECT department, COUNT(*)
-FROM employee
-GROUP BY department;
-```
-
-### Limit Results
-
-```sql
-SELECT *
-FROM employee
-LIMIT 5;
-```
-
----
-
-## 🔄 SQL Learning Flow
-
-```text
-Database Basics
-      ↓
-Tables
-      ↓
-SELECT
-      ↓
-WHERE
-      ↓
-Aggregate Functions
-      ↓
-GROUP BY
-      ↓
-ORDER BY
-      ↓
-LIMIT
-      ↓
-More Advanced SQL Queries
-```
-
----
-
-## 🎯 What I Am Practicing
-
-This repository helps me practice:
-
-- Writing SQL queries
-- Retrieving data using SELECT
-- Filtering data using WHERE
-- Counting records
-- Calculating totals
-- Finding averages
-- Finding minimum and maximum values
-- Grouping records
-- Sorting query results
-- Limiting query results
-- Working with relational database tables
-- Improving SQL problem-solving skills
-
----
-
-## 🛠️ Technologies Used
-
-- 🐬 MySQL
-- 🗃️ SQL
-- 💻 MySQL Workbench
-- 🔧 Git
-- 🐙 GitHub
-
----
-
-## 📈 Learning Progress
-
-```text
-SQL Basics
-    ↓
-SELECT Queries
-    ↓
-WHERE Clause
-    ↓
-Aggregate Functions
-    ↓
-GROUP BY
-    ↓
-ORDER BY
-    ↓
-LIMIT
-    ↓
-Advanced SQL
-```
-
----
-
-## 🚀 Future Topics
-
-More SQL and database concepts will be added as I continue learning.
-
-Planned topics include:
-
-- `HAVING`
-- `DISTINCT`
-- `JOIN`
-- INNER JOIN
-- LEFT JOIN
-- RIGHT JOIN
-- SELF JOIN
-- Subqueries
-- Nested Queries
-- CASE Statements
-- Constraints
-- Primary Keys
-- Foreign Keys
-- Database Design
-- Normalization
-- Views
-- Indexes
-- Stored Procedures
-- Triggers
-
----
-
-## 👨‍💻 Author
-
-**Betha Hemanth**
-
-This repository is part of my journey to learn **SQL, MySQL, and Database Management**.
-
----
-
-⭐ If you find this repository useful, feel free to explore the SQL files and follow my learning journey.
